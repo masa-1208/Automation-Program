@@ -1,14 +1,7 @@
-from datetime import datetime
-import math
+from datetime import datetime, timedelta
 
-sleep_t = datetime(2023, 1, 1, 22, 0, 0)
-wakeup_t = datetime(2023, 1, 2, 8, 10, 0)
+base_t = datetime(2025, 2, 27)
 
-delta = wakeup_t - sleep_t
-print(type(delta))
-sec = delta.seconds
-hours = sec / (60*60)
-hours_integer = math.floor(hours)
-minutes = round((hours - hours_integer)*60)
+t = base_t + timedelta(days=3)
 
-print('睡眠時間は'+str(hours_integer)+'時間'+str(minutes)+'分')
+print(t.strftime('%Y/%m/%d'))
