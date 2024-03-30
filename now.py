@@ -1,5 +1,8 @@
 from datetime import datetime
 
-t = datetime.now()
-fmt = t.strftime('%Y,%m,%d %H, %M %S')
-print(fmt)
+conduct_date = datetime(2025, 4, 13)
+
+now = datetime.now()
+
+delta = conduct_date - now
+print('あと'+str(delta.days+1)+'日')
