@@ -1,9 +1,9 @@
 import openpyxl as excel
 
-book = excel.Workbook()
+book = excel.load_workbook("hello.xlsx")
 
-sheet = book.active
+sheet = book.worksheets[0] # extract the first worksheet
 
-sheet["A1"] = "hello"
+cell = sheet["A1"]
 
-book.save("hello.xlsx")
+print(cell.value)
