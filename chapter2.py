@@ -4,7 +4,8 @@ book = excel.Workbook()
 
 sheet = book.active
 
-for i in range(10):
-    sheet.cell(row=(i+1), column=1, value=i)
+for i in range(1,10):
+    for j in range(1,10):
+        sheet.cell(row=i, column=j, value=i*j)
 
-book.save("consecutive.xlsx")
+book.save("9times9.xlsx")
