@@ -1,19 +1,33 @@
 import openpyxl as excel
-import datetime
+
+wareki_table = [
+    {"name": "Meiji", "start": 1868, "end": 1912},
+    {"name": "Taisho", "start": 1912, "end": 1926},
+    {"name": "Showa", "start": 1926, "end": 1989},
+    {"name": "Heisei", "start": 1989, "end": 2019},
+    {"name": "Reiwa", "start": 2019, "end": 9999}
+]
+
+# Function to convert from Western to Japanese calendar
+def seireki_wareki(year):
+    for w in wareki_table:
+        if w["start"] <= year < w["end"]:
+            y = "year" + str(year - w["start"] + 1)
+            return w["name"] + y
+    return "unknown"
 
 book = excel.Workbook()
 sheet = book.active
 
-# first year to display
-base_year = datetime.date.today().year - 10
+sheet["A1"] = "Western"
+sheet["B1"] = "Japanese Calendar"
 
-for i in range(20):
-    year = base_year + i
-    s1 = year - 7
-    s2 = year - 6
-    sf = "{}~{}".format(s1, s2)
+start_y = 1930
+for i in range(101):
+    sei = start_y + i
+    wa = seireki_wareki(sei)
 
-    sheet.cell(i+1, 1, value=year)
-    sheet.cell(i+1, 2, value=sf)
+    sheet.cell(i+2, 1, value="year:" + str(sei))
+    sheet.cell(i+2, 2, value=wa)
 
-book.save("enroll_year.xlsx")
+book.save("wareki.xlsx")
