@@ -4,14 +4,16 @@ import datetime
 book = excel.Workbook()
 sheet = book.active
 
-this_year = datetime.date.today().year
+# first year to display
+base_year = datetime.date.today().year - 10
 
-for i in range(81):
-    age = i
-    birth_year = this_year - age
-    age_cell = sheet.cell(i+1, 1)
-    age_cell.value = 'age:' + str(age)
-    year_cell = sheet.cell(i+1, 2)
-    year_cell.value = 'birth year:' + str(birth_year)
+for i in range(20):
+    year = base_year + i
+    s1 = year - 7
+    s2 = year - 6
+    sf = "{}~{}".format(s1, s2)
 
-book.save("agelist.xlsx")
+    sheet.cell(i+1, 1, value=year)
+    sheet.cell(i+1, 2, value=sf)
+
+book.save("enroll_year.xlsx")
